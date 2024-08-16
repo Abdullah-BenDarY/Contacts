@@ -1,14 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/box_name"
+        style="@style/inputLayoutStyle"
+        app:layout_constraintBottom_toTopOf="@id/box_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_person">
 
-</FrameLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_name"
+            style="@style/input_edit_text_Style"
+            android:hint="@string/name"
+            android:paddingStart="@dimen/_35sdp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/box_phone"
+        style="@style/inputLayoutStyle"
+        app:layout_constraintBottom_toTopOf="@id/box_description"
+        app:layout_constraintEnd_toEndOf="@id/box_name"
+        app:layout_constraintStart_toStartOf="@id/box_name"
+        app:layout_constraintTop_toBottomOf="@id/box_name"
+        app:startIconDrawable="@drawable/ic_phone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_phone"
+            style="@style/input_edit_text_Style"
+            android:hint="@string/phone"
+            android:paddingStart="@dimen/_35sdp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/box_description"
+        style="@style/inputLayoutStyle"
+        app:layout_constraintBottom_toTopOf="@id/btn_save"
+        app:layout_constraintEnd_toEndOf="@id/box_phone"
+        app:layout_constraintStart_toStartOf="@id/box_phone"
+        app:layout_constraintTop_toBottomOf="@id/box_phone"
+        app:startIconDrawable="@drawable/ic_description">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_description"
+            style="@style/input_edit_text_Style"
+            maxLines="3"
+            android:hint="@string/description"
+            android:paddingStart="@dimen/_35sdp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save"
+        style="@style/btn_style"
+        android:text="@string/save"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/box_description"
+        app:layout_constraintStart_toStartOf="@id/box_description"
+        app:layout_constraintTop_toBottomOf="@id/box_description" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.40218878" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/btn_save"
+        app:layout_constraintStart_toStartOf="@id/btn_save"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        tools:listitem="@layout/item_contact" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
