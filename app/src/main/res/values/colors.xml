@@ -11,5 +11,5 @@
     <color name="sec_purple">#5c4b99</color>
     <color name="pale_orange">#ffdbc3</color>
     <color name="txt_gr">#989898</color>
-    <color name="transparent">#FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

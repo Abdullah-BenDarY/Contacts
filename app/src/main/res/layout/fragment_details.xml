@@ -1,14 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.DetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tv_details"
+        style="@style/tv_app_style"
+        android:text="@string/contacts_app"
+        app:drawableStartCompat="@drawable/ic_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_contact"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/corners_shape"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.40"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_details">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bacground" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/img_person"
+                style="@style/img_person_detals_style"
+                app:icon="@drawable/ic_person"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_details"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="-40dp"
+        app:cardCornerRadius="@dimen/_25sdp"
+        app:cardElevation="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_contact"
+        app:layout_constraintWidth_percent="0.85">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/tv_named_style"
+                android:text="@string/name"
+                app:layout_constraintBottom_toTopOf="@+id/tv_phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_contact_name"
+                style="@style/tv_details_style"
+                app:layout_constraintBottom_toBottomOf="@id/tvName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvName"
+                tools:text="Abdullah" />
+
+            <View
+                android:id="@+id/divider_name"
+                style="@style/line_view_style"
+                app:layout_constraintBottom_toTopOf="@id/tv_phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+            <TextView
+                android:id="@+id/tv_phone"
+                style="@style/tv_named_style"
+                android:text="@string/phone"
+                app:layout_constraintBottom_toTopOf="@+id/tv_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+            <TextView
+                android:id="@+id/tv_contact_phone"
+                style="@style/tv_details_style"
+                app:layout_constraintBottom_toBottomOf="@id/tv_phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_phone"
+                tools:text="Abdullah" />
+
+            <View
+                android:id="@+id/divider_phone"
+                style="@style/line_view_style"
+                app:layout_constraintBottom_toTopOf="@id/tv_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_phone" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                style="@style/tv_named_style"
+                android:text="@string/description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
+
+            <TextView
+                android:id="@+id/tv_contact_Description"
+                style="@style/tv_details_style"
+                android:ellipsize="end"
+                android:maxWidth="@dimen/_250sdp"
+                android:maxLines="2"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_description"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                tools:text="Abduskjgnkmfsngkmfngklfngnmfkgndfngkdfnkgndflgnmdfknlfdlkngkldfmgkldfmg,mkldfmgkmlkllah" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_call"
+        style="@style/btn_call_style"
+        app:icon="@drawable/ic_phone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_details" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
