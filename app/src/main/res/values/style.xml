@@ -10,7 +10,7 @@
         <item name="boxCornerRadiusBottomStart">@dimen/_4sdp</item>
         <item name="boxStrokeColor">@color/main_purple</item>
         <item name="boxBackgroundMode">outline</item>
-        <item name="boxBackgroundColor">@color/transparent</item>
+        <item name="boxBackgroundColor">@color/white</item>
         <item name="boxStrokeWidth">@dimen/_1sdp</item>
         <item name="android:textColorHint">@color/txt_gr</item>
         <item name="startIconTint">@color/sec_purple</item>
