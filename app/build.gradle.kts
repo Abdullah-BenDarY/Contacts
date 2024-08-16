@@ -59,5 +59,9 @@ dependencies {
     implementation(libs.ssp.android)
     // sdp
     implementation(libs.sdp.android)
+    //cyrcle image view
+    implementation(libs.circleimageview)
+
+
 
 }

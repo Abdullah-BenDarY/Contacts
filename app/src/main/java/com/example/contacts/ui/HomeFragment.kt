@@ -1,15 +1,22 @@
 package com.example.contacts.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.example.contacts.adapters.AdapterContacts
 import com.example.contacts.base.BaseFragment
 import com.example.contacts.data.ModelContact
 import com.example.contacts.databinding.FragmentHomeBinding
+import com.example.contacts.util.EXIST
 import com.example.contacts.util.INVALID
 import com.example.contacts.util.REQUIRED
+import com.example.contacts.util.SharedPrefs
+import com.example.contacts.util.showToast
+import java.util.UUID
+
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
     private val adapterContacts = AdapterContacts()
     private val modelContactList = mutableListOf<ModelContact>()
@@ -26,7 +33,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun onClicks() {
+
         super.onClicks()
+        adapterContacts.setOnNavigateClick {
+            setSahredPrefsData(it.name , it.phone , it.description)
+            findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment())
+        }
         binding.apply {
             btnSave.setOnClickListener {
                 val name = editName.text.toString()
@@ -35,6 +48,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 if (validate(name, phone)) {
                     saveContact(name, phone, description)
                 }
+            }
+            adapterContacts.setOnRootClick {
+                dialPhoneNumber(it)
             }
         }
     }
@@ -46,6 +62,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 binding.editName.requestFocus()
                 false
             }
+
             phone.isEmpty() -> {
                 binding.editPhone.error = REQUIRED
                 binding.editPhone.requestFocus()
@@ -62,9 +79,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun saveContact(name: String, phone: String, description: String) {
         val modelContact = ModelContact(name, phone, description)
-        modelContactList.add(modelContact)
-        adapterContacts.addItem()
+        if (modelContactList.contains(modelContact)) {
+            showToast(EXIST)
+        } else {
+            modelContactList.add(modelContact)
+            adapterContacts.addItem()
+        }
     }
 
+    private fun setSahredPrefsData(name: String , phone: String , description: String){
+        SharedPrefs.setContactName(name)
+        SharedPrefs.setContactphone(phone)
+        SharedPrefs.setContactDescription(description)
 
+    }
+    @SuppressLint("QueryPermissionsNeeded")
+    private fun dialPhoneNumber(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_DIAL).apply {
+            data = Uri.parse("tel:$phoneNumber")
+        }
+        if (intent.resolveActivity(requireActivity().packageManager) != null) {
+            startActivity(intent)
+        }
+    }
 }
