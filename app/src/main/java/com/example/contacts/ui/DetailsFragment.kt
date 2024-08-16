@@ -50,5 +50,4 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>(FragmentDetailsBind
             startActivity(intent)
         }
     }
-
 }
